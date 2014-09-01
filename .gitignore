@@ -4,9 +4,9 @@
 # or operating system, you probably want to add a global ignore instead:
 #   git config --global core.excludesfile '~/.gitignore_global'
 
-.idea
-.gitignore
-Gemfile.lock
-features/testing_test.feature
-features/autocomplete.txt
-features/screenshots
+/.idea
+/.gitignore
+/Gemfile.lock
+/features/testing_test.feature
+/features/autocomplete.txt
+/features/screenshots
