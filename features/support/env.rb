@@ -96,3 +96,4 @@ end
 
 #  cucumber BROWSER=firefox -s -t @step_tests
 #  cucumber BROWSER=firefox -s -t @link_step_3
+#  cucumber KEEPOPEN=true -s -t @

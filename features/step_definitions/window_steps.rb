@@ -30,18 +30,26 @@ end
 When I wait for the popup and close it
 =end
 When /^I wait for the popup and close it$/ do
+  start_time = Time.now
   @browser.window(:index => 1).wait_until_present
+  end_time = Time.now
+  elapsed_seconds = (end_time - start_time).round(2)
   @browser.window(:index => 1).close
   @browser.window(:index => 0).use
+  puts "#{elapsed_seconds} seconds."
 end
 
 =begin window_test_5
 When I wait for the popup and focus it
 =end
 When /^I wait for the popup and focus it$/ do
+  start_time = Time.now
   @browser.window(:index => 1).wait_until_present
   @browser.window(:index => 1).use
-  sleep 1
+  end_time = Time.now
+  elapsed_seconds = (end_time - start_time).round(2)
+  puts "#{elapsed_seconds} seconds."
+#  sleep 1
 end
 
 =begin window_test_6

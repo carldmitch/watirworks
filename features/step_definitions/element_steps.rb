@@ -33,10 +33,13 @@ When I wait for the "attribute=value" element to be present
 =end
 When /^I wait for the "(\w{2,9})=(.*)" element to be present$/ do
 |attribute, value|
+  start_time = Time.now
   selector = @browser.element(:"#{attribute}" => value)
   selector.wait_until_present
+  end_time = Time.now
+  elapsed_seconds = (end_time - start_time).round(2)
   if eval = selector.exists?
-    puts("TRUE!!! Done waiting for the '#{attribute}=#{value}' element")
+    puts("TRUE!!! Done waiting for the '#{attribute}=#{value}' element after only #{elapsed_seconds} seconds")
   else
     fail("FAIL!!! I couldn't wait for the '#{attribute}=#{value}' element")
   end

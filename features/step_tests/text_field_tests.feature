@@ -50,3 +50,12 @@ Feature: text_field
 
   @text_field_steps_08
   Scenario: When I set the text field "attribute=value" to a random zip code
+    Given I am on the "http://the-internet.herokuapp.com/login" page
+      When I set the text field "id=username" to a random zip code
+        Then I pause for "1" seconds
+      When I clear the text field "id=username"
+        Then I pause for "1" seconds
+
+
+#  cucumber -s -t @text_field
+#  cucumber -s -t @text_field_steps_08

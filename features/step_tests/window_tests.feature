@@ -18,7 +18,10 @@ Feature: Tests for window_steps
       When I close the popup titled "Facebook"
 
 @window_test_3
-  Scenario: 3 When I wait for the popup and close it
+  Scenario: 3 When I close the current window
+
+@window_test_3
+  Scenario: 3 When I close the current tab
 
 @window_test_4
   Scenario: 4 When I wait for the popup and close it
@@ -31,6 +34,7 @@ Feature: Tests for window_steps
     Given I am on the "www.sharecare.com/login" page
       When I click on the link "id=facebookLoginLink"
       When I wait for the popup and focus it
+        Then I pause for "2" seconds
       When I close the current window
 
 @window_test_6

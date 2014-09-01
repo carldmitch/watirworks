@@ -26,10 +26,9 @@ Given /^I am on the "(.*)" page$/ do
     load_secs = @browser.performance.summary[:response_time]/1000.0
   else
     @browser.goto url
-    puts @browser.url
     load_secs = @browser.performance.summary[:response_time]/1000.0
   end
-    puts "Load Time: #{load_secs} seconds."
+    puts "Response Time: #{load_secs} seconds."
 end
 
 #####################################################
