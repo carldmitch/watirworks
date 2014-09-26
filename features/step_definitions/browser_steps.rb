@@ -19,16 +19,20 @@ Given I am on the "url" page
 =end
 Given /^I am on the "(.*)" page$/ do
 |url|
+  start_time = Time.now
 # The "if" below is so you can set a universal domain page (see "support/env.rb" file)
   if ( url =~ /^\/(.*)/ )
     @browser.goto(BASE_URL + "#{url}")
     puts @browser.url
-    load_secs = @browser.performance.summary[:response_time]/1000.0
+    # load_secs = @browser.performance.summary[:response_time]/1000.0
   else
     @browser.goto url
-    load_secs = @browser.performance.summary[:response_time]/1000.0
+    # load_secs = @browser.performance.summary[:response_time]/1000.0
   end
-    puts "Response Time: #{load_secs} seconds."
+  end_time = Time.now
+  elapsed_seconds = (end_time - start_time).round(2)
+  puts "Response Time: #{elapsed_seconds} seconds."
+  # puts "Response Time: #{load_secs} seconds."
 end
 
 #####################################################

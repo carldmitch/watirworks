@@ -4,7 +4,7 @@ When I set the checkbox "attribute=value"
 When /^I set the checkbox "(\w{2,9})=(.*)"$/ do
 |attribute, value|
   selector = @browser.checkbox(:"#{attribute}" => value)
-  selector.wait_until_present
+  selector.wait_until_present(5)
     if !(selector.set?)
       selector.set
     else
@@ -18,7 +18,7 @@ When I clear the checkbox "attribute=value"
 When /^I clear the checkbox "(\w{2,9})=(.*)"$/ do
 |attribute, value|
   selector = @browser.checkbox(:"#{attribute}" => value)
-  selector.wait_until_present
+  selector.wait_until_present(5)
     if selector.set?
       selector.clear
     else
@@ -32,11 +32,11 @@ Then the checkbox "attribute=value" should be set
 Then /^the checkbox "(\w{2,9})=(.*)" should be set$/ do
 |attribute, value|
   selector = @browser.checkbox(:"#{attribute}" => value)
-  selector.wait_until_present
+  selector.wait_until_present(5)
     if selector.set?
       puts("TRUE!!! The checkbox '#{attribute}=#{value}' is set")
     else
-      fail("FAIL!!!! The checkbox '#{attribute}=#{value}' was not set")
+      fail("FAIL!!!! The checkbox '#{attribute}=#{value}' is not set")
     end
 end
 
@@ -46,7 +46,7 @@ Then the checkbox "attribute=value" should not be set
 Then /^the checkbox "(\w{2,9})=(.*)" should not be set$/ do
 |attribute, value|
   selector = @browser.checkbox(:"#{attribute}" => value)
-  selector.wait_until_present
+  selector.wait_until_present(5)
     if !(selector.set?)
       puts("TRUE!!! The checkbox '#{attribute}=#{value}' is NOT set")
     else

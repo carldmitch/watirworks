@@ -17,7 +17,7 @@ case ENV['BROWSER']
     browser = Watir::Browser.new :chrome
     browser.window.resize_to(1100,650)
   when 'phantomjs', 'headless'                  # cucumber BROWSER=phantomjs -s -t @step_tests
-    browser = Selenium::WebDriver.for :phantomjs
+    browser = Watir::Browser.new :phantomjs
   when 'safari'                                 # cucumber BROWSER=safari -s -t @step_tests
     browser = Watir::Browser.new :safari
     browser.window.resize_to(1100,650)
@@ -78,7 +78,12 @@ AfterStep('@outline') do
   puts "\n          "
 end
 #------------------------------------------------------------------------------#
-
+# If the feature being tested breaks you can add this tag
+# above the scenario or feature and when you run all the tests
+# cucumber will skip this scenario/feature.
+Before('@BUG') do
+ pending
+end
 #------------------------------------------------------------------------------#
 # You can pass the parameter KEEPOPEN=true to keep the browser open after test is executed
 case ENV['KEEPOPEN']
@@ -97,3 +102,6 @@ end
 #  cucumber BROWSER=firefox -s -t @step_tests
 #  cucumber BROWSER=firefox -s -t @link_step_3
 #  cucumber KEEPOPEN=true -s -t @
+
+# with slowhandcuke
+# cucumber -f 'Slowhandcuke::Formatter' -s -t @browser

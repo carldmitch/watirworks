@@ -5,7 +5,7 @@ Feature: Tests for browser_steps
 
 @browser_step_1
   Scenario: 1 Given I open up a new clean "(.*)" browser (chrome|ff)
-    Given I open up a new clean "ff" browser
+    Given I open up a new clean "chrome" browser
         Then I pause for "1" second
       When I close the browser
 

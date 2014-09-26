@@ -49,3 +49,44 @@ Then /^the RegEx text "(.*)" should be present$/ do
     fail("FAIL!!!! '#{some_text}' is NOT present on the page")
   end
 end
+
+=begin test_steps_05
+Then the RegEx text "some_text" should not be present
+=end
+Then /^the RegEx text "(.*)" should not be present$/ do
+| some_text |
+  eval = Watir::Wait.until(5) {!@browser.element(:text, /#{some_text}/).exist?}
+  if eval == true
+    puts("True!!! '#{some_text}' is NOT present on the page")
+  else
+    fail("FAIL!!!! '#{some_text}' IS present on the page")
+  end
+end
+
+=begin test_steps_06
+Then the text "some_text" should be present regardless of case
+=end
+Then /^the text "(.*)" should be present regardless of case$/ do
+| some_text |
+  down_text = some_text.downcase
+  eval = Watir::Wait.until(5) { @browser.text.downcase.include? "#{down_text}" }
+  if eval == true
+    puts("True!!! '#{down_text}' IS present on the page")
+  else
+    fail("FAIL!!!! '#{down_text}' is NOT present on the page")
+  end
+end
+
+=begin test_steps_07
+Then the text "some_text" should not be present regardless of case
+=end
+Then /^the text "(.*)" should not be present regardless of case$/ do
+| some_text |
+  down_text = some_text.downcase
+  eval = Watir::Wait.until(5) { !@browser.text.downcase.include? "#{down_text}" }
+  if eval == true
+    puts("True!!! '#{down_text}' is NOT present on the page")
+  else
+    fail("FAIL!!!! '#{down_text}' IS present on the page")
+  end
+end
