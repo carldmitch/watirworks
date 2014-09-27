@@ -66,6 +66,7 @@ Then the "attribute=value" element should not contain the text "some_text"
 Then /^the "(\w{2,9})=(.*)" element should not contain the text "(.*)"$/ do
 |attribute, value, some_text|
   selector = @browser.element(:"#{attribute}" => value)
+  selector.wait_until_present
   result = selector.text
   if !(result.include? some_text)
     puts("TRUE!!! '#{attribute}=#{value}' returned '#{result}'")
@@ -80,6 +81,7 @@ Then the "attribute=value" element should have the exact value of "exact"
 Then /^the "(\w{2,9})=(.*)" element should have the exact value of "(.*)"$/ do
 |attribute, value, exact|
   selector = @browser.element(:"#{attribute}" => value)
+  selector.wait_until_present
   result = selector.value
   if exact == result
     puts("TRUE!!! '#{attribute}=#{value}' returned '#{result}'")
@@ -252,6 +254,7 @@ When I click on the "attribute=value" element until it is no longer present
 When /^I click on the "(\w{2,9})=(.*)" element until it is no longer present$/ do
 |attribute, value|
   selector = @browser.element(:"#{attribute}" => value)
+  selector.wait_until_present
   while (selector.visible?) do
       selector.click
 #for some reason this loop fails without a slight pause in it

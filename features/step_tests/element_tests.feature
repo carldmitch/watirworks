@@ -138,4 +138,5 @@ Feature: Test for element_steps
 # if you make any changes to the cookies_steps.rb you should run the following test
 #
 # => cucumber -s -t @element
+# => cucumber -s -t @element_step_18
 #
