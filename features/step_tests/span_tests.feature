@@ -10,3 +10,8 @@ Feature: Test for span_steps
       When I submit the form "id=searchform"
         Then I wait for the span "text=form" to be present
         Then the url should include "form"
+
+# if you make any changes to the span_steps.rb you should run the following test
+#
+# => cucumber -s -t @span
+#

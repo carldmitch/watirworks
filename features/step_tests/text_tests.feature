@@ -26,4 +26,8 @@ Feature: Tests for text_steps
       When I wait for the text "Watir" to be present
     Then the RegEx text "^W.*W.*Demo$" should be present
 
-#  cucumber -s -t @text
+
+# if you make any changes to the text_steps.rb you should run the following test
+#
+# => cucumber -s -t @text
+#

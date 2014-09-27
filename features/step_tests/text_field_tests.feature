@@ -57,5 +57,7 @@ Feature: text_field
         Then I pause for "1" seconds
 
 
-#  cucumber -s -t @text_field
-#  cucumber -s -t @text_field_steps_08
+# if you make any changes to the text_field_steps.rb you should run the following test
+#
+# => cucumber -s -t @text_field
+#

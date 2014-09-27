@@ -56,3 +56,9 @@ Feature: Tests for window_steps
       When I close the current window
       When I focus on the main window
       When I set the text field "id=email" to "carldmitch@facebook.com"
+
+
+# if you make any changes to the window_steps.rb you should run the following test
+#
+# => cucumber -s -t @window
+#

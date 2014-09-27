@@ -22,6 +22,7 @@ Feature: Tests for select_list
         Then the dropdown "id=city_id" should have "Atlanta" selected
 
 
-
-# cucumber -s -t @select_list
-# cucumber -s -t @select_list_test_1
+# if you make any changes to the select_list_steps.rb you should run the following test
+#
+# => cucumber -s -t @select_list
+#
