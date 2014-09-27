@@ -64,4 +64,7 @@ Feature: Tests for browser_steps
         Then the url should match the given RegEx "^http.*rspec.*"
 
 
-# cucumber -s -t @browser
+# if you make any changes to the browser_steps.rb you should run the following test
+#
+# => cucumber -s -t @browser
+#

@@ -1,6 +1,6 @@
 @step_tests
 @image
-Feature:
+Feature: Tests for image_steps
 
 @image_step_1
   Scenario: 3 Then the image "attribute=value" should be visible
@@ -33,7 +33,7 @@ Feature:
         Then the image "class=wp-image-6" should have the width of "225"
 
 
-
-
-  
-# cucumber -s -t @image
+# if you make any changes to the image_steps.rb you should run the following test
+#
+# => cucumber -s -t @image
+#

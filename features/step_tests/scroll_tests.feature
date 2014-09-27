@@ -33,3 +33,9 @@ Feature: Scrolling API for watir-webdriver
           Then I pause for "2" seconds
         When I scroll to the "id=today-on-sharecare-sidebar" element
           Then I pause for "2" seconds
+
+
+# if you make any changes to the scroll_steps.rb you should run the following test
+#
+# => cucumber -s -t @scroll
+#

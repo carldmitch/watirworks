@@ -6,6 +6,8 @@ require 'watir-scroll'
 require 'rspec'
 require 'slowhandcuke'
 require 'browsermob-proxy'
+# require 'pry' # TODO this gem is causing issues
+
 #------------------------------------------------------------------------------#
 BASE_URL = 'https://www.sharecare.com'
 #------------------------------------------------------------------------------#
@@ -59,6 +61,7 @@ case ENV['SPEED']
 #------------------------------------------------------------------------------#
   Before do
       @browser = browser
+      @browser.execute_script "window.alert = function() { return true; }"
   end
 #------------------------------------------------------------------------------#
   # After do |scenario|
@@ -67,6 +70,9 @@ case ENV['SPEED']
   #   my_shot.to_s
   #   embed "#{my_shot}", 'image/png'
   # end
+#------------------------------------------------------------------------------#
+#------------------------------------------------------------------------------#
+
 #------------------------------------------------------------------------------#
 # If you put the outline tag on every 'Scenario Outline'
 # then the two hooks below will put a line change

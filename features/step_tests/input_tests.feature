@@ -1,5 +1,6 @@
-@input_steps
-Feature: 
+@step_tests
+@input
+Feature: Tests for input_steps
 
 @input_step_01
   Scenario: Then the input field "attribute=value" should be enabled
@@ -16,7 +17,7 @@ Feature:
   Scenario: Then the input field "attribute=value" should be required
     Given I am on the "http://www.quirksmode.org/html5/tests/inputs_attributes.html" page
       Then the input field "name=required" should be required
-      
+
 @input_step_04
   Scenario: Then the input field "attribute=value" should not be required
     Given I am on the "http://www.quirksmode.org/html5/tests/inputs_attributes.html" page
@@ -43,4 +44,7 @@ Feature:
     Given I am on the "http://www.quirksmode.org/html5/tests/inputs_attributes.html" page
       Then the input field "name=autofocus" should not be readonly
 
-
+# if you make any changes to the image_steps.rb you should run the following test
+#
+# => cucumber -s -t @input
+#

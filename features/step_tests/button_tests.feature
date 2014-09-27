@@ -23,3 +23,8 @@ Feature: Tests for button_steps
           Then the button "type=submit" should be enabled
         When I click on the button "text=Submit"
           Then the button "type=submit" should not be enabled
+
+# if you make any changes to the button_steps.rb you should run the following test
+#
+# => cucumber -s -t @button
+#

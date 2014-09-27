@@ -42,9 +42,9 @@ Feature: Test for element_steps
 
 @element_step_6
   Scenario: 6 Then the "attribute=value" element should have the exact value of "exact"
-    Given I am on the "bit.ly/watir-webdriver-demo" page
-      When I set the text field "id=entry_0" to "Carl Mitchell"
-        Then the "id=entry_0" element should have the exact value of "Carl Mitchell"
+    Given I am on the "http://the-internet.herokuapp.com/login" page
+      When I set the text field "id=username" to "Carl Mitchell"
+        Then the "id=username" element should have the exact value of "Carl Mitchell"
 
 @element_step_7
   Scenario: 7 Then the "attribute=value" element should be present
@@ -86,8 +86,7 @@ Feature: Test for element_steps
 @element_step_13
   Scenario: 13 Then there should be exactly "number_of" of the "attribute=value" element
     Given I am on the "http://the-internet.herokuapp.com" page
-        Then there should be exactly "25" of the "css=ul li a" element
-        # Then there should be exactly "21" of the "css=ul li a" element
+        Then there should be exactly "26" of the "css=ul li a" element
 
 @element_step_14
   Scenario: 14 Then there should be less than "number_of" of the "attribute=value" element
@@ -135,3 +134,8 @@ Feature: Test for element_steps
       When I focus on the "id=sharecare-footer" element
         Then I pause for "2" seconds
 
+
+# if you make any changes to the cookies_steps.rb you should run the following test
+#
+# => cucumber -s -t @element
+#

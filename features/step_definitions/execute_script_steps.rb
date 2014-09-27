@@ -1,4 +1,5 @@
 =begin execute_script_step_1
+# DEPRECATED Use "When I scroll to the..." instead
 When I scroll up the page "pixels" pixels
 =end
 When /^I scroll up the page "(.*)" pixels$/ do
@@ -7,6 +8,7 @@ When /^I scroll up the page "(.*)" pixels$/ do
 end
 
 =begin execute_script_step_2
+# DEPRECATED Use "When I scroll to the..." instead
 When I scroll down the page "pixels" pixels
 =end
 When /^I scroll down the page "(.*)" pixels$/ do

@@ -317,6 +317,7 @@ When /^I focus on the "(\w{2,9})=(.*)" element$/ do
   selector = @browser.element(:"#{attribute}" => value)
   selector.wait_until_present
   if selector.exists?
+    @browser.scroll.to selector
     selector.focus
   else
     fail("FAIL!!! I couldn't click the '#{attribute}=#{value}' element")

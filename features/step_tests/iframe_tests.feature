@@ -11,7 +11,7 @@ Feature: Tests for iframe_steps
 @iframe_step_2
   Scenario: 2 When in iframe "(.*)", I click the link "(.*)"
       Given I am on the "http://www.w3schools.com/html/tryit.asp?filename=tryhtml_links" page
-        When in iframe "id=iframeResult", I click the link "text=HTML Tutorial"
+        When in iframe "id=iframeResult", I click the link "text=HTML Images"
           Then in iframe "id=iframeResult", the text "HTML HOME" should be present
 
 @iframe_step_3
@@ -29,7 +29,7 @@ Feature: Tests for iframe_steps
 @iframe_step_5
   Scenario: 5 Then in iframe "fr_attribute=fr_value", the "attribute=value" element should be present
     Given I am on the "http://www.w3schools.com/html/tryit.asp?filename=tryhtml_links" page
-        Then in iframe "id=iframeResult", the "css=a[href*="default"]" element should be present
+        Then in iframe "id=iframeResult", the "css=a[href*="html_images"]" element should be present
 
 @iframe_step_6
   Scenario: 6 Then I go into the iframe "(.*)" and the css element "(.*)" should not be present
@@ -40,3 +40,9 @@ Feature: Tests for iframe_steps
   Scenario: 7 Then in iframe "fr_attribute=fr_value", the text "some_text" should be present
     Given I am on the "http://www.w3schools.com/tags/tryit.asp?filename=tryhtml_input_disabled" page
         Then in iframe "id=iframeResult", the text "First" should be present
+
+
+# if you make any changes to the form_steps.rb you should run the following test
+#
+# => cucumber -s -t @iframe
+#
