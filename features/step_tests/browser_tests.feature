@@ -67,4 +67,5 @@ Feature: Tests for browser_steps
 # if you make any changes to the browser_steps.rb you should run the following test
 #
 # => cucumber -s -t @browser
+# => cucumber -s -t @browser_step_2
 #

@@ -14,4 +14,5 @@ Feature: Test for span_steps
 # if you make any changes to the span_steps.rb you should run the following test
 #
 # => cucumber -s -t @span
+# => cucumber -s -t @span_step_01
 #

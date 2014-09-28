@@ -7,7 +7,11 @@ require 'rspec'
 require 'slowhandcuke'
 require 'browsermob-proxy'
 # require 'pry' # TODO this gem is causing issues
-
+#------------------------------------------------------------------------------#
+# Run all tests for Watirworks Framework
+#
+#  cucumber -s -t @step_tests
+#
 #------------------------------------------------------------------------------#
 BASE_URL = 'https://www.sharecare.com'
 #------------------------------------------------------------------------------#

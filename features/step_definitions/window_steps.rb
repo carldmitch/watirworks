@@ -24,6 +24,7 @@ When /^I close the current window|tab$/ do
   @browser.windows.last.close
   sleep 1
   @browser.windows.last.use
+  sleep 1
 end
 
 =begin window_test_4
