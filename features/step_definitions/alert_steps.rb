@@ -30,7 +30,7 @@ Then the alert should exist
 =end
 Then /^the alert should exist$/ do
   if @browser.alert.exists?
-    puts "JS Alert indeed exists"
+    log("JS Alert indeed exists")
   else
     fail("FAIL!!!! I wasn't able to find the alert")
   end
@@ -43,7 +43,7 @@ When I display the alert text
 =end
 Then /^I display the alert text$/ do
   if @browser.alert.exists?
-    puts @browser.alert.text
+    log(@browser.alert.text)
   else
     fail("FAIL!!!! I wasn't able to find the alert")
   end
