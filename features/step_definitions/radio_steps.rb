@@ -3,7 +3,7 @@
 When /^I set the radio button "(\w{2,9})=(.*)"$/ do
  |attribute, value|
   selector = @browser.radio(:"#{attribute}" => value)
-  selector.wait_until_present
+  selector.wait_until(&:present?)
   eval = selector.exists?
   if eval == true
     selector.set
@@ -17,7 +17,7 @@ end
 Then /^the radio button "(\w{2,9})=(.*)" should be set$/ do
  |attribute, value|
   selector = @browser.radio(:"#{attribute}" => value)
-  selector.wait_until_present
+  selector.wait_until(&:present?)
   eval = selector.set?
   if eval == true
     puts("#{eval}!!! the radio button '#{attribute}=#{value}' IS set")
@@ -31,7 +31,7 @@ end
 Then /^the radio button "(\w{2,9})=(.*)" should not be set$/ do
  |attribute, value|
   selector = @browser.radio(:"#{attribute}" => value)
-  selector.wait_until_present
+  selector.wait_until(&:present?)
   eval = !(selector.set?)
   if eval == true
     puts("#{eval}!!! the radio button '#{attribute}=#{value}' is NOT set")

@@ -1,71 +1,72 @@
 @step_tests
 @browser
+@2019
 
 Feature: Tests for browser_steps
 
-@browser_step_1
+  @browser_step_1
   Scenario: 1 Given I open up a new clean "(.*)" browser (chrome|ff)
     Given I open up a new clean "chrome" browser
-        Then I pause for "1" second
-      When I close the browser
+    Then I pause for "1" second
+    When I close the browser
 
-@browser_step_2
+  @browser_step_2
   Scenario: 2 Given I am on the "(.*)" page
     Given I am on the "www.google.com" page
-        Then the url should include "www.google.com"
+    Then the url should include "www.google.com"
 
-@browser_step_3
+  @browser_step_3
   Scenario: 3 Then the url should include "(.*)"
-    Given I am on the "www.yahoo.com" page
-        Then the url should include "yahoo.com"
-      When I go back to the previous page
-        Then I pause for "1" seconds
-        Then the url should not include "carl"
+    Given I am on the "www.google.com" page
+    Then the url should include "google.com"
+    When I go back to the previous page
+    Then I pause for "1" seconds
+    Then the url should not include "carl"
 
-@browser_step_4
+  @browser_step_4
   Scenario: 4 When I refresh the page
     Given I am on the "www.whatarecookies.com/cookietest.asp" page
-        Then the "id=result" element should be present
-        Then the text "No existing cookie was found" should be present
-      When I refresh the page
-        Then the text "A cookie already existed for this website" should be present
-      When I clear the cookies from the current domain
+    Then the "#result" element should be present
+    Then the text "No existing cookie was found" should be present
+    When I refresh the page
+    Then the text "A cookie already existed for this website" should be present
+    When I clear the cookies from the current domain
 
-@browser_step_5
+  @browser_step_5
   Scenario: 5 When I go back to the previous page
     Given I am on the "www.google.com" page
-        Then I pause for "1" second
-    Given I am on the "www.yahoo.com" page
-        Then the url should include "yahoo.com"
-      When I go back to the previous page
-        Then the url should include "google.com"
-        Then the url should not include "carl"
+    Then I pause for "1" second
+    Given I am on the "http://the-internet.herokuapp.com" page
+    Then the url should include "herokuapp.com"
+    When I go back to the previous page
+    Then the url should include "google.com"
+    Then the url should not include "carl"
 
-@browser_step_6
+  @browser_step_6
   Scenario: 6 When I close the browser
     Given I open up a new clean "chrome" browser
-        Then I pause for "1" second
-      When I close the browser
+    Then I pause for "1" second
+    When I close the browser
 
-@browser_step_7
+  @browser_step_7
   Scenario: 7 Then the url should be "(.*)"
     Given I am on the "http://the-internet.herokuapp.com/" page
-      When I click on the link "text=Drag and Drop"
-       Then the url should be "http://the-internet.herokuapp.com/drag_and_drop"
+    When I click on the link text "Drag and Drop"
+    Then the url should be "http://the-internet.herokuapp.com/drag_and_drop"
 
-@browser_step_8
+  @browser_step_8
   Scenario: 8 Then the url should not include "(.*)"
-    Given I am on the "watirmelon.com" page
-        Then the url should not include "carldmitch"
+    Given I am on the "http://the-internet.herokuapp.com/" page
+    Then the url should not include "carldmitch"
 
-@browser_step_9
+  @browser_step_9
   Scenario: 8 Then the url should match the given RegEx "(.*)"
     Given I am on the "https://github.com/rspec/rspec-expectations#built-in-matchers" page
-        Then the url should match the given RegEx "^http.*rspec.*"
+    Then the url should match the given RegEx "^http.*rspec.*"
 
 
 # if you make any changes to the browser_steps.rb you should run the following test
 #
-# => cucumber -s -t @browser
-# => cucumber -s -t @browser_step_2
+# => cucumber -t @browser
+# => cucumber features/step_tests/browser_tests.feature
 #

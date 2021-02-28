@@ -4,21 +4,22 @@ When I wait for the text "waited_text" to be present
 When /^I wait for the text "(.*)" to be present$/ do
 | waited_text |
   start_time = Time.now
-  Watir::Wait.until { @browser.text.include? "#{waited_text}" }
+  # Watir::Wait.until { @browser.text.include? "#{waited_text}" }
+  @browser.text.include?("#{waited_text}").wait_until(&present?)
   end_time = Time.now
   elapsed_seconds = (end_time - start_time).round(2)
-  puts "TRUE!!! and we only had to wait #{elapsed_seconds} seconds."
+  log("TRUE!!! and we only had to wait #{elapsed_seconds} seconds.")
 end
 
 
 =begin test_steps_02
 Then the text "some_text" should be present
 =end
-Then /^the text "(.*)" should be present$/ do
-| some_text |
-  eval = Watir::Wait.until(5) { @browser.text.include? "#{some_text}" }
+Then /^the text "(.*)" should be present$/ do | some_text |
+  # eval = Watir::Wait.until(5) { @browser.text.include? "#{some_text}" }
+  eval = @browser.text.include?("#{some_text}")
   if eval == true
-    puts("True!!! '#{some_text}' IS present on the page")
+    log("True!!! '#{some_text}' IS present on the page")
   else
     fail("FAIL!!!! '#{some_text}' is NOT present on the page")
   end
@@ -31,7 +32,7 @@ Then /^the text "(.*)" should not be present$/ do
 | some_text |
   eval = Watir::Wait.until(5) {!(@browser.text.include? "#{some_text}")}
   if eval == true
-    puts("True!!! '#{some_text}' is NOT present on the page")
+    log("True!!! '#{some_text}' is NOT present on the page")
   else
     fail("FAIL!!!! '#{some_text}' IS present on the page")
   end
@@ -44,7 +45,7 @@ Then /^the RegEx text "(.*)" should be present$/ do
 | some_text |
   eval = Watir::Wait.until(5) {@browser.element(:text, /#{some_text}/).exist?}
   if eval == true
-    puts("True!!! '#{some_text}' IS present on the page")
+    log("True!!! '#{some_text}' IS present on the page")
   else
     fail("FAIL!!!! '#{some_text}' is NOT present on the page")
   end
@@ -57,7 +58,7 @@ Then /^the RegEx text "(.*)" should not be present$/ do
 | some_text |
   eval = Watir::Wait.until(5) {!@browser.element(:text, /#{some_text}/).exist?}
   if eval == true
-    puts("True!!! '#{some_text}' is NOT present on the page")
+    log("True!!! '#{some_text}' is NOT present on the page")
   else
     fail("FAIL!!!! '#{some_text}' IS present on the page")
   end
@@ -71,7 +72,7 @@ Then /^the text "(.*)" should be present regardless of case$/ do
   down_text = some_text.downcase
   eval = Watir::Wait.until(5) { @browser.text.downcase.include? "#{down_text}" }
   if eval == true
-    puts("True!!! '#{down_text}' IS present on the page")
+    log("True!!! '#{down_text}' IS present on the page")
   else
     fail("FAIL!!!! '#{down_text}' is NOT present on the page")
   end
@@ -85,7 +86,7 @@ Then /^the text "(.*)" should not be present regardless of case$/ do
   down_text = some_text.downcase
   eval = Watir::Wait.until(5) { !@browser.text.downcase.include? "#{down_text}" }
   if eval == true
-    puts("True!!! '#{down_text}' is NOT present on the page")
+    log("True!!! '#{down_text}' is NOT present on the page")
   else
     fail("FAIL!!!! '#{down_text}' IS present on the page")
   end

@@ -17,13 +17,12 @@ you will end up with too many browsers open
 =begin browser_step_2
 Given I am on the "url" page
 =end
-Given /^I am on the "(.*)" page$/ do
-|url|
+Given /^I am on the "(.*)" page$/ do |url|
   start_time = Time.now
 # The "if" below is so you can set a universal domain page (see "support/env.rb" file)
   if ( url =~ /^\/(.*)/ )
     @browser.goto(BASE_URL + "#{url}")
-    puts @browser.url
+    log(@browser.url)
     # load_secs = @browser.performance.summary[:response_time]/1000.0
   else
     @browser.goto url
@@ -31,8 +30,8 @@ Given /^I am on the "(.*)" page$/ do
   end
   end_time = Time.now
   elapsed_seconds = (end_time - start_time).round(2)
-  puts "Response Time: #{elapsed_seconds} seconds."
-  # puts "Response Time: #{load_secs} seconds."
+  log("Response Time: #{elapsed_seconds} seconds.")
+  # log("Response Time: #{load_secs} seconds.")
 end
 
 #####################################################
@@ -47,7 +46,7 @@ Then /^the url should include "(.*)"$/ do
   my_url = @browser.url
   eval = @browser.url.include? "#{included_url}"
   if eval == true
-    puts("TRUE!!! '#{included_url}' is included in '#{my_url}'")
+    log("TRUE!!! '#{included_url}' is included in '#{my_url}'")
   else
     fail("FAIL!!!! '#{included_url}' is NOT included in '#{my_url}'")
   end
@@ -99,7 +98,7 @@ Then /^the url should be "(.*)"$/ do
 |some_url|
   result = @browser.url
   if @browser.url == some_url
-    puts("TRUE!!! The url returned '#{result}'")
+    log("TRUE!!! The url returned '#{result}'")
   else
     fail("FAIL!!! The url returned '#{result}'")
   end
@@ -115,7 +114,7 @@ Then /^the url should not include "(.*)"$/ do
 |included_url|
   result = @browser.url
   if !(@browser.url.include? "#{included_url}")
-    puts("TRUE!!! '#{included_url}' is NOT included in '#{result}'")
+    log("TRUE!!! '#{included_url}' is NOT included in '#{result}'")
   else
     fail("FAIL!!!! '#{included_url}' is included in '#{result}'")
   end
@@ -131,7 +130,7 @@ Then /^the url should match the given RegEx "(.*)"$/ do
  |regex_text|
   result = @browser.url
    if expect(result).to match(/#{regex_text}/)
-     puts("True!!! '#{result}' DID match the RegEx '#{regex_text}'")
+     log("True!!! '#{result}' DID match the RegEx '#{regex_text}'")
    else
      fail("FAIL!!!! '#{result}' did NOT match '#{regex_text}'")
    end

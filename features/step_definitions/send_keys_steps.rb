@@ -10,7 +10,7 @@ end
 When /^I press the "(.*)" key on the "(\w{2,9})=(.*)" element$/ do
 |key_press, attribute, value|
   selector = @browser.element(:"#{attribute}" => value)
-  selector.wait_until_present
+  selector.wait_until(&:present?)
   eval = selector.exists?
   if eval == true
     selector.send_keys :"#{key_press}"
@@ -23,7 +23,7 @@ end
 When /^I right click on the "(\w{2,9})=(.*)" element$/ do
 |attribute, value|
   selector = @browser.element(:"#{attribute}" => value)
-  selector.wait_until_present
+  selector.wait_until(&:present?)
   eval = selector.exists?
   if eval == true
     selector.right_click

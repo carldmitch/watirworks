@@ -1,14 +1,12 @@
 =begin image_step_1
 Then the image "attribute=value" should be visible
 =end
-Then /^the image "(\w{2,9})=(.*)" should be visible$/ do
-|attribute, value|
-  img = @browser.image(:"#{attribute}" => value)
-  eval = img.loaded?
-  if eval == true
-    puts("TRUE!!! the '#{attribute}=#{value}' image IS visible")
+Then /^the image "(.*)" should be visible$/ do |selector|
+  img = @browser.image(css: selector)
+  if img.loaded?
+    log("TRUE!!! the '#{selector}' image IS visible")
   else
-    fail("FAIL!!! the '#{attribute}=#{value}' image is NOT visible")
+    fail("FAIL!!! the '#{selector}' image is NOT visible")
   end
 end
 
@@ -16,14 +14,12 @@ end
 =begin execute_script_step_4
 Then the image "attribute=value" should not be visible
 =end
-Then /^the image "(\w{2,9})=(.*)" should not be visible$/ do
-|attribute, value|
-  img = @browser.image(:"#{attribute}" => value)
-  eval = !(img.loaded?)
-  if eval == true
-    puts("TRUE!!! the '#{attribute}=#{value}' image is NOT visible")
+Then /^the image "(.*)" should not be visible$/ do |selector|
+  img = @browser.image(css: selector)
+  if !(img.loaded?)
+    log("TRUE!!! the '#{selector}' image is NOT visible")
   else
-    fail("FAIL!!! the '#{attribute}=#{value}' image is visible")
+    fail("FAIL!!! the '#{selector}' image is visible")
   end
 end
 
@@ -31,16 +27,14 @@ end
 =begin
 Then the image "attribute=value" should contain the alt text "alt_text"
 =end
-Then /^the image "(\w{2,9})=(.*)" should contain the alt text "(.*)"$/ do
-|attribute, value, alt_text|
-  img = @browser.image(:"#{attribute}" => value)
-  img.wait_until_present
+Then /^the image "(.*)" should contain the alt text "(.*)"$/ do |selector, alt_text|
+  img = @browser.image(css: selector)
   img.loaded?
   result = img.alt
   if result.include? alt_text
-    puts("TRUE!!! '#{attribute}=#{value}' returned the alt text '#{result}'")
+    log("TRUE!!! '#{selector}' returned the alt text '#{result}'")
   else
-    fail("FAIL!!! '#{attribute}=#{value}' returned the alt text '#{result}'")
+    fail("FAIL!!! '#{selector}' returned the alt text '#{result}'")
   end
 end
 
@@ -48,16 +42,14 @@ end
 =begin
 Then the image "attribute=value" should contain the src "src_url"
 =end
-Then /^the image "(\w{2,9})=(.*)" should contain the src "(.*)"$/ do
-|attribute, value, src_url|
-  img = @browser.image(:"#{attribute}" => value)
-  img.wait_until_present
+Then /^the image "(.*)" should contain the src "(.*)"$/ do |selector, src_url|
+  img = @browser.image(css: selector)
   img.loaded?
   result = img.src
   if result.include? src_url
-    puts("TRUE!!! '#{attribute}=#{value}' returned the src '#{result}'")
+    log("TRUE!!! '#{selector}' returned the src '#{result}'")
   else
-    fail("FAIL!!! '#{attribute}=#{value}' returned the src '#{result}'")
+    fail("FAIL!!! '#{selector}' returned the src '#{result}'")
   end
 end
 
@@ -65,33 +57,29 @@ end
 =begin
 Then the image "attribute=value" should have the height of "img_height"
 =end
-Then /^the image "(\w{2,9})=(.*)" should have the height of "(.*)"$/ do
-|attribute, value, img_height|
-  img = @browser.image(:"#{attribute}" => value)
-  img.wait_until_present
+Then /^the image "(.*)" should have the height of "(.*)"$/ do |selector, img_height|
+  img = @browser.image(css: selector)
   img.loaded?
   result = img.height.to_s
   if result == img_height
-    puts("TRUE!!! '#{attribute}=#{value}' returned the height '#{result}'")
+    log("TRUE!!! '#{selector}' returned the height '#{result}'")
   else
-    fail("FAIL!!! '#{attribute}=#{value}' returned the height '#{result}'")
+    fail("FAIL!!! '#{selector}' returned the height '#{result}'")
   end
 end
 
 
 =begin
-Then the image "attribute=value" should have the width of "img_width"
+Then the image "selector" should have the width of "img_width"
 =end
-Then /^the image "(\w{2,9})=(.*)" should have the width of "(.*)"$/ do
-|attribute, value, img_width|
-  img = @browser.image(:"#{attribute}" => value)
-  img.wait_until_present
+Then /^the image "(.*)" should have the width of "(.*)"$/ do |selector, img_width|
+  img = @browser.image(css: selector)
   img.loaded?
   result = img.width.to_s
   if result == img_width
-    puts("TRUE!!! '#{attribute}=#{value}' returned the width '#{result}'")
+    log("TRUE!!! '#{selector}' returned the width '#{result}'")
   else
-    fail("FAIL!!! '#{attribute}=#{value}' returned the width '#{result}'")
+    fail("FAIL!!! '#{selector}' returned the width '#{result}'")
   end
 end
 

@@ -5,9 +5,9 @@ When /^I pause for "(.*)" seconds?$/ do
 | num_secs |
   sleep num_secs.to_i
   if num_secs.to_i == 1
-    puts "'%s' second later" % [num_secs]
+    log("'%s' second later" % [num_secs])
   else
-    puts "'%s' seconds later" % [num_secs]
+    log("'%s' seconds later" % [num_secs])
   end
 end
 
@@ -18,8 +18,8 @@ When /^I take a screen shot$/ do
   sleep 1
   time = Time.now.strftime("%Y_%m_%d-%H_%M_%S")
   @browser.screenshot.save "features/screenshots/#{time}.png"
-  puts "Your screenshot was saved to 'features/screenshots/#{time}.png'"
-  puts "open features/screenshots/#{time}.png"
+  log("Your screenshot was saved to 'features/screenshots/#{time}.png'")
+  log("open features/screenshots/#{time}.png")
 end
 
 =begin

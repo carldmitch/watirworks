@@ -1,106 +1,105 @@
 =begin
-Then the input field "attribute=value" should be enabled
+Then the input field "selector" should be enabled
 =end
-Then /^the input field "(\w{2,9})=(.*)" should be enabled$/ do
-| attribute, value |
-  selector = @browser.input(:"#{attribute}" => value)
-  if selector.enabled?
-    puts("TRUE!!! the input field '#{attribute}=#{value}' IS enabled")
+Then /^the input field "(.*)" should be enabled$/ do |selector|
+  element = @browser.input(css: selector)
+  element.present?
+  if element.enabled?
+    log("TRUE!!! the input field '#{selector}' IS enabled")
   else
-    fail("FAIL!!! the input field '#{attribute}=#{value}' is NOT enabled")
+    fail("FAIL!!! the input field '#{selector}' is NOT enabled")
   end
 end
 
 =begin
-Then the input field "attribute=value" should not be enabled
+Then the input field "selector" should not be enabled
 =end
-Then /^the input field "(\w{2,9})=(.*)" should not be enabled$/ do
-| attribute, value |
-  selector = @browser.input(:"#{attribute}" => value)
-  if !(selector.enabled?)
-    puts("TRUE!!! the input field '#{attribute}=#{value}' is NOT enabled")
+Then /^the input field "(.*)" should not be enabled$/ do |selector|
+  element = @browser.input(css: selector)
+  element.present?
+  if !(element.enabled?)
+    log("TRUE!!! the input field '#{selector}' is NOT enabled")
   else
-    fail("FAIL!!! the input field '#{attribute}=#{value}' IS enabled")
+    fail("FAIL!!! the input field '#{selector}' IS enabled")
   end
 end
 
 =begin
-Then the input field "attribute=value" should be required
+Then the input field "selector" should be required
 =end
-Then /^the input field "(\w{2,9})=(.*)" should be required$/ do
-| attribute, value |
-  selector = @browser.input(:"#{attribute}" => value)
-  if selector.required?
-    puts("TRUE!!! the input field '#{attribute}=#{value}' IS required")
+Then /^the input field "(.*)" should be required$/ do | selector |
+  element = @browser.input(css: selector)
+  element.present?
+  if element.required?
+    log("TRUE!!! the input field '#{selector}' IS required")
   else
-    fail("FAIL!!! the input field '#{attribute}=#{value}' is NOT required")
+    fail("FAIL!!! the input field '#{selector}' is NOT required")
   end
 end
 
 =begin
-Then the input field "attribute=value" should not be required
+Then the input field "selector" should not be required
 =end
-Then /^the input field "(\w{2,9})=(.*)" should not be required$/ do
-| attribute, value |
-  selector = @browser.input(:"#{attribute}" => value)
-  if !(selector.required?)
-    puts("TRUE!!! the input field '#{attribute}=#{value}' is NOT required")
+Then /^the input field "(.*)" should not be required$/ do | selector |
+  element = @browser.input(css: selector)
+  element.present?
+  if !(element.required?)
+    log("TRUE!!! the input field '#{selector}' is NOT required")
   else
-    fail("FAIL!!! the input field '#{attribute}=#{value}' IS required")
+    fail("FAIL!!! the input field '#{selector}' IS required")
   end
 end
 
 =begin
-Then the cursor should autofocus on the "attribute=value" input field
+Then the cursor should autofocus on the "selector" input field
 =end
-Then /^the cursor should autofocus on the "(\w{2,9})=(.*)" input field$/ do
-| attribute, value |
-  selector = @browser.input(:"#{attribute}" => value)
-  if selector.autofocus?
-    puts("TRUE!!! the input field '#{attribute}=#{value}' IS set to autofocus")
+Then /^the cursor should autofocus on the "(.*)" input field$/ do | selector |
+  element = @browser.input(css: selector)
+  element.present?
+  if element.autofocus?
+    log("TRUE!!! the input field '#{selector}' IS set to autofocus")
   else
-    fail("FAIL!!! the input field '#{attribute}=#{value}' is NOT set to autofocus")
+    fail("FAIL!!! the input field '#{selector}' is NOT set to autofocus")
   end
 end
 
 =begin
-Then the placeholder text inside the "attribute=value" input field should include "ph_text"
+Then the placeholder text inside the "selector" input field should include "ph_text"
 =end
-Then /^the placeholder text inside the "(\w{2,9})=(.*)" input field should include "(.*)"$/ do
-|attribute, value, ph_text|
-  selector = @browser.input(:"#{attribute}" => value).when_present
-  result = selector.placeholder
-  eval = result.include? ph_text
-  if eval == true
-    puts("True !!! '#{ph_text}' is included in the input field '#{attribute}=#{value}'")
+Then /^the placeholder text inside the "(.*)" input field should include "(.*)"$/ do |selector, placeholder_text|
+  element = @browser.input(css: selector)
+  element.present?  
+  result = element.placeholder
+  if result.include? placeholder_text
+    log("True !!! '#{ph_text}' is included in the input field '#{selector}'")
   else
-    fail("FAIL!!!! '#{ph_text}' is NOT included in the input field '#{attribute}=#{value}'")
+    fail("FAIL!!!! '#{ph_text}' is NOT included in the input field '#{selector}'")
   end
 end
 
 =begin
-Then the input field "attribute=value" should be readonly
+Then the input field "selector" should be readonly
 =end
-Then /^the input field "(\w{2,9})=(.*)" should be readonly$/ do
-| attribute, value |
-  selector = @browser.input(:"#{attribute}" => value)
-  if selector.readonly?
-    puts("TRUE!!! the input field '#{attribute}=#{value}' IS readonly")
+Then /^the input field "(.*)" should be readonly$/ do | selector |
+  element = @browser.input(css: selector)
+  element.present?  
+  if element.readonly?
+    log("TRUE!!! the input field '#{selector}' IS readonly")
   else
-    fail("FAIL!!! the input field '#{attribute}=#{value}' is NOT readonly")
+    fail("FAIL!!! the input field '#{selector}' is NOT readonly")
   end
 end
 
 =begin
-Then the input field "attribute=value" should not be readonly
+Then the input field "selector" should not be readonly
 =end
-Then /^the input field "(\w{2,9})=(.*)" should not be readonly$/ do
-| attribute, value |
-  selector = @browser.input(:"#{attribute}" => value)
-  if !(selector.readonly?)
-    puts("TRUE!!! the input field '#{attribute}=#{value}' is NOT readonly")
+Then /^the input field "(.*)" should not be readonly$/ do | selector |
+  element = @browser.input(css: selector)
+  element.present?  
+  if !(element.readonly?)
+    log("TRUE!!! the input field '#{selector}' is NOT readonly")
   else
-    fail("FAIL!!! the input field '#{attribute}=#{value}' IS readonly")
+    fail("FAIL!!! the input field '#{selector}' IS readonly")
   end
 end
 

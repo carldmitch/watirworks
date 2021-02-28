@@ -47,7 +47,7 @@ end
 # When(/^I open in a new window the link "(\w{2,9})=(.*)"$/) do
 # |attribute, value|
 #   selector = @browser.link(:"#{attribute}" => value)
-#   selector.wait_until_present
+#   selector.wait_until(&:present?)
 #   eval = selector.exists?
 #   if eval == true
 #     selector.click(:command, :shift)
@@ -63,7 +63,7 @@ end
 # When(/^I focus on the window titled "(.*)"$/) do
 # | some_thing |
 #   selector = @browser.window(:title => some_thing)
-#   selector.wait_until_present
+#   selector.wait_until(&:present?)
 #   selector.use
 # end
 

@@ -12,7 +12,7 @@ When I close the popup titled "pop_title"
 When /^I close the popup titled "(.*)"$/ do
 | pop_title |
   selector = @browser.window(:title => pop_title)
-  selector.wait_until_present
+  selector.wait_until(&:present?)
   selector.close
 end
 
@@ -32,7 +32,7 @@ When I wait for the popup and close it
 =end
 When /^I wait for the popup and close it$/ do
   start_time = Time.now
-  @browser.window(:index => 1).wait_until_present
+  @browser.window(:index => 1).wait_until(&:present?)
   end_time = Time.now
   elapsed_seconds = (end_time - start_time).round(2)
   @browser.window(:index => 1).close
@@ -45,7 +45,7 @@ When I wait for the popup and focus it
 =end
 When /^I wait for the popup and focus it$/ do
   start_time = Time.now
-  @browser.window(:index => 1).wait_until_present
+  @browser.window(:index => 1).wait_until(&:present?)
   @browser.window(:index => 1).use
   end_time = Time.now
   elapsed_seconds = (end_time - start_time).round(2)

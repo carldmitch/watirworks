@@ -1,31 +1,15 @@
 =begin link_step_1
-When I click on the link "attribute=value"
+When I click on the link "value"
 =end
-When /^I click on the link "(\w{2,9})=(.*)"$/ do
-|attribute, value|
-  selector = @browser.link(:"#{attribute}" => value)
-  selector.wait_until_present
-  eval = selector.exists?
-  if eval == true
-    selector.click
-    else
-      fail("FAIL!!!! I couldn't click the link '#{attribute}=#{value}'")
-  end
+When /^I click on the link "(.*)"$/ do |value| link(value)
+  @link_selector.click
 end
 
 =begin link_step_2
 When I click on the link text "txt_link"
 =end
-When /^I click on the link text "(.*)"$/ do
-|txt_link|
-  selector = @browser.link(:text => txt_link)
-  selector.wait_until_present
-  eval = selector.exists?
-  if eval == true
-    selector.click
-    else
-      fail("FAIL!!!! I couldn't click the link '#{txt_link}'")
-  end
+When /^I click on the link text "(.*)"$/ do |value| link_text(value)
+  @link_text_selector.click
 end
 
 =begin link_step_3
@@ -34,7 +18,7 @@ When I open in a new tab the link "attribute=value"
 When(/^I open in a new tab the link "(\w{2,9})=(.*)"$/) do
 |attribute, value|
   selector = @browser.link(:"#{attribute}" => value)
-  selector.wait_until_present
+  selector.wait_until(&:present?)
   eval = selector.exists?
   if eval == true
     selector.click(:command, :shift)
@@ -50,7 +34,7 @@ When I open in a new tab the link "attribute=value" and focus it
 When(/^I open in a new tab the link "(\w{2,9})=(.*)" and focus it$/) do
 |attribute, value|
   selector = @browser.link(:"#{attribute}" => value)
-  selector.wait_until_present
+  selector.wait_until(&:present?)
   eval = selector.exists?
   if eval == true
     selector.click(:command, :shift)

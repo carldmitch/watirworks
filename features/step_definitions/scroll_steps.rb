@@ -25,7 +25,7 @@ When I scroll to the "attribute=value" element
 When /^I scroll to the "(\w{2,9})=(.*)" element$/ do
 |attribute, value|
   selector = @browser.element(:"#{attribute}" => value)
-  selector.wait_until_present
+  selector.wait_until(&:present?)
   @browser.scroll.to selector
 end
 

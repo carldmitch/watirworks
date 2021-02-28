@@ -5,7 +5,7 @@ Then /^I wait for the span "(\w{2,9})=(.*)" to be present$/ do
 |attribute, value|
   start_time = Time.now
   selector = @browser.span(:"#{attribute}" => value)
-  selector.wait_until_present
+  selector.wait_until(&:present?)
   end_time = Time.now
   elapsed_seconds = (end_time - start_time).round(2)
   if selector.exists?
@@ -23,7 +23,7 @@ end
 # When /^I double click on the span "(\w{2,9})=(.*)"$/ do
 # |attribute, value,|
 #   selector = @browser.span(:"#{attribute}" => value)
-#   selector.wait_until_present
+#   selector.wait_until(&:present?)
 #   if eval = selector.exists?
 #       selector.double_click
 #     else
@@ -36,7 +36,7 @@ end
 # When /^I click on the span "(\w{2,9})=(.*)"$/ do
 # |attribute, value,|
 #   selector = @browser.span(:"#{attribute}" => value)
-#   selector.wait_until_present
+#   selector.wait_until(&:present?)
 #   if eval = selector.exists?
 #       selector.click
 #     else

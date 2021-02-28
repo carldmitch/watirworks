@@ -4,7 +4,7 @@
 When /^I select "(.*)" from the dropdown "(\w{2,9})=(.*)"$/ do
 |entry, attribute, value|
   selector = @browser.select_list(:"#{attribute}" => value)
-  selector.wait_until_present
+  selector.wait_until(&:present?)
   eval = selector.exists?
   if eval == true
     selector.select "#{entry}"
@@ -17,7 +17,7 @@ end
 Then /^the value of the dropdown "(\w{2,9})=(.*)" should be "(.*)"$/ do
 |attribute, value, entry|
   selector = @browser.select_list(:"#{attribute}" => value)
-  selector.wait_until_present
+  selector.wait_until(&:present?)
   dropdown = selector.value
   eval = dropdown == "#{entry}"
   if eval == true
@@ -31,7 +31,7 @@ end
 Then /^the dropdown "(\w{2,9})=(.*)" should have "(.*)" selected$/ do
 |attribute, value, entry|
   selector = @browser.select_list(:"#{attribute}" => value)
-  selector.wait_until_present
+  selector.wait_until(&:present?)
   eval = selector.selected? "#{entry}"
   if eval == true
     puts("#{eval}!!! the dropdown '#{attribute}=#{value}' has '#{entry}' selected")
