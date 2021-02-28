@@ -1,11 +1,7 @@
 require 'selenium-webdriver'
-require 'watir-webdriver'
-require 'watir-webdriver-performance'
-require 'webdriver-user-agent'
-require 'watir-scroll'
-require 'rspec'
-require 'slowhandcuke'
-require 'browsermob-proxy'
+require 'cucumber'
+require 'watir'
+
 # require 'pry' # TODO this gem is causing issues
 #------------------------------------------------------------------------------#
 # Run all tests for Watirworks Framework
@@ -14,17 +10,24 @@ require 'browsermob-proxy'
 #
 #------------------------------------------------------------------------------#
 BASE_URL = 'https://www.sharecare.com'
+
+Watir.default_timeout = 10
+
 #------------------------------------------------------------------------------#
 case ENV['BROWSER']
-  when 'ff', 'firefox'                          # cucumber BROWSER=firefox -s -t @step_tests
+  when 'ff', 'firefox'
+    # cucumber BROWSER=firefox -s -t @step_tests
     browser = Watir::Browser.new :firefox
     browser.window.resize_to(1100,650)
-  when 'chrome'                                 # cucumber BROWSER=chrome -s -t @step_tests
+  when 'chrome'
+    # cucumber BROWSER=chrome -s -t @step_tests
     browser = Watir::Browser.new :chrome
     browser.window.resize_to(1100,650)
-  when 'phantomjs', 'headless'                  # cucumber BROWSER=phantomjs -s -t @step_tests
-    browser = Watir::Browser.new :phantomjs
-  when 'safari'                                 # cucumber BROWSER=safari -s -t @step_tests
+  when 'headless'
+    # cucumber BROWSER=headless -s -t @step_tests
+    browser = Watir::Browser.new :chrome, headless: true
+  when 'safari'
+    # cucumber BROWSER=safari -s -t @step_tests
     browser = Watir::Browser.new :safari
     browser.window.resize_to(1100,650)
 # USER AGENTS
@@ -98,10 +101,30 @@ end
 # You can pass the parameter KEEPOPEN=true to keep the browser open after test is executed
 case ENV['KEEPOPEN']
   when 'true' # cucumber KEEPOPEN=true -s -t @step_tests
+    at_exit do
+      sleep 222
+    end
   else
     at_exit do
     browser.close
 end
+end
+
+# The is an often used line
+def element(selector)
+  @element = @browser.element(css: selector)
+end
+
+def link(selector)
+  @link_selector = @browser.link(css: selector)
+end
+
+def link_text(value)
+  @link_text_selector = @browser.link(text: value)
+end
+
+def text_field(selector)
+  @text_field_selector = @browser.text_field(css: selector)
 end
 
 #------------------------------------------------------------------------------#
