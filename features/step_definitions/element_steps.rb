@@ -188,7 +188,7 @@ When /^I click on the "(.*)" element until it is no longer present$/ do |selecto
   while (element.present?) do
     element.click
 #for some reason this loop fails without a slight pause in it
-      sleep(1.0/24.0)
+      sleep(1.0/2.0)
   end
   log("TRUE!!! '#{selector}' is no longer present")
 end

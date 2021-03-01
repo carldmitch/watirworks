@@ -1,34 +1,27 @@
 #_step_#1 When I press the "(.*)" key "(.*)" times?
-When /^I press the "(.*)" key "(.*)" times?$/ do
-| key_press, number_of |
+When /^I press the "(.*)" key "(.*)" times?$/ do | key_press, number_of |
   (number_of.to_i).times do
     @browser.send_keys :"#{key_press}"
   end
 end
 
 #_step_#2 When I press the "(.*)" key on the "(\w{2,9})=(.*)" element
-When /^I press the "(.*)" key on the "(\w{2,9})=(.*)" element$/ do
-|key_press, attribute, value|
-  selector = @browser.element(:"#{attribute}" => value)
-  selector.wait_until(&:present?)
-  eval = selector.exists?
-  if eval == true
-    selector.send_keys :"#{key_press}"
-    else
-      fail("FAIL!!!! I couldn't press '#{key_press}' the '#{attribute}=#{value}' element")
+When /^I press the "(.*)" key on the "(.*)" element$/ do |key_press, selector|
+  element = @browser.element(css: selector)
+  if element.present?
+    element.send_keys :"#{key_press}"
+  else
+    fail("FAIL!!!! I couldn't press '#{key_press}' the '#{selector}' element")
   end
 end
 
 #_step_#3 When I right click on the "(\w{2,9})=(.*)" element
-When /^I right click on the "(\w{2,9})=(.*)" element$/ do
-|attribute, value|
-  selector = @browser.element(:"#{attribute}" => value)
-  selector.wait_until(&:present?)
-  eval = selector.exists?
-  if eval == true
-    selector.right_click
-    else
-      fail("FAIL!!!! I couldn't right click the '#{attribute}=#{value}' element")
+When /^I right click on the "(.*)" element$/ do |selector|
+  element = @browser.element(css: selector)
+  if element.present?
+    element.right_click
+  else
+    fail("FAIL!!!! I couldn't right click the '#{selector}' element")
   end
 end
 

@@ -27,10 +27,3 @@ Feature: Tests for cookies_steps
     When I refresh the page
     Then the text "No existing cookie was found" should be present
     When I clear the cookies from the current domain
-
-
-# if you make any changes to the cookies_steps.rb you should run the following test
-#
-# => cucumber -t @cookies
-# => cucumber features/step_tests/cookies_tests.feature
-#

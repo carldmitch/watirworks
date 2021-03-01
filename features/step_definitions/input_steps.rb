@@ -71,9 +71,9 @@ Then /^the placeholder text inside the "(.*)" input field should include "(.*)"$
   element.present?  
   result = element.placeholder
   if result.include? placeholder_text
-    log("True !!! '#{ph_text}' is included in the input field '#{selector}'")
+    log("True !!! '#{placeholder_text}' is included in the input field '#{selector}'")
   else
-    fail("FAIL!!!! '#{ph_text}' is NOT included in the input field '#{selector}'")
+    fail("FAIL!!!! '#{placeholder_text}' is NOT included in the input field '#{selector}'")
   end
 end
 

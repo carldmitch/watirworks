@@ -17,9 +17,3 @@ Feature: CSS Selectors and How to find them
     Then there should be exactly "3" of the "[class$=lumns]" element
     Then there should be exactly "4" of the "[class*=large]" element
     Then there should be exactly "3" of the "[class*=columns]" element
-
-
-#
-# cucumber -t @attribute
-# cucumber features/step_tests/attribute_selectors_tests.feature
-#

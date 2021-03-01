@@ -45,7 +45,7 @@ Feature: Test for element_steps
   Scenario: 6 Then the "attribute=value" element should have the exact value of "exact"
     Given I am on the "http://the-internet.herokuapp.com/login" page
     When I set the text field "#username" to "Carl Mitchell"
-    When I pause for "3" seconds
+    Then I pause for "3" seconds
     Then the "#username" element should have the exact value of "Carl Mitchell"
 
   @element_step_7
@@ -129,17 +129,3 @@ Feature: Test for element_steps
     Given I am on the "www.sharecare.com" page
     Then the meta property "og:type" content contains "website"
     Then the meta property "description" content contains "A health and wellness engagement platform"
-
-# @element_step_22
-# Scenario: 20 When I focus on the "attribute=value" element
-#   Given I am on the "www.sharecare.com" page
-#   When I focus on the "footer.sharecare-esi" element
-#   Then I pause for "5" seconds
-
-
-# if you make any changes to the cookies_steps.rb you should run the following test
-#
-# => cucumber -t @element
-# => cucumber -t @element_step_7
-# => cucumber features/step_tests/element_tests.feature
-#

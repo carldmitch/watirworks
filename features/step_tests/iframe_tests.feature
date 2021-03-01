@@ -40,10 +40,3 @@ Feature: Tests for iframe_steps
   Scenario: 7 Then in iframe "fr_attribute=fr_value", the text "some_text" should be present
     Given I am on the "http://www.w3schools.com/tags/tryit.asp?filename=tryhtml_input_disabled" page
     Then in iframe "#iframeResult", the text "First" should be present
-
-
-# if you make any changes to the form_steps.rb you should run the following test
-#
-# => cucumber -t @iframe_step_2
-# => cucumber features/step_tests/iframe_tests.feature
-#

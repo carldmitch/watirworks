@@ -9,7 +9,7 @@ Feature: Tests for button_steps
     Given I am on the "http://www.mkyong.com/wp-content/uploads/jQuery/jQuery-disabled-submit-button-after-clicked.html?#" page
     Then the button "input[type=submit]" should be enabled
     When I click on the button "input[type=submit]"
-    When I pause for "2" seconds
+    Then I pause for "2" seconds
     Then the button "input[type=submit]" should not be enabled
 
   @button_step_2 @cleanbrowser
@@ -17,7 +17,7 @@ Feature: Tests for button_steps
     Given I am on the "http://www.mkyong.com/wp-content/uploads/jQuery/jQuery-disabled-submit-button-after-clicked.html?#" page
     Then the button "input[type=submit]" should be enabled
     When I click on the button "input[type=submit]"
-    When I pause for "2" seconds
+    Then I pause for "2" seconds
     Then the button "input[type=submit]" should not be enabled
 
   @button_step_3
@@ -25,11 +25,5 @@ Feature: Tests for button_steps
     Given I am on the "http://www.mkyong.com/wp-content/uploads/jQuery/jQuery-disabled-submit-button-after-clicked.html?#" page
     Then the button "input[type=submit]" should be enabled
     When I click on the button "input[type=submit]"
-    When I pause for "2" seconds
+    Then I pause for "2" seconds
     Then the button "input[type=submit]" should not be enabled
-
-# if you make any changes to the button_steps.rb you should run the following test
-#
-# => cucumber -t @button
-# => cucumber features/step_tests/button_tests.feature
-#

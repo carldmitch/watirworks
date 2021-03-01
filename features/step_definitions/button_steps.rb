@@ -43,3 +43,12 @@ Then /^the button "(.*)" should not be enabled$/ do | selector |
     fail("FAIL!!! the button '#{selector}' IS enabled")
   end
 end
+
+When /^I click on the button with the text "(.*)"$/ do |text|
+  element = @browser.button(text: text)
+  if element.present?
+    element.click
+  else
+    fail("FAIL!!! I couldn't find the '#{text}' button")
+  end
+end

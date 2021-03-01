@@ -1,16 +1,14 @@
 =begin execute_script_step_1
 When I scroll up the page "pixels" pixels
 =end
-When /^I scroll up the page "(.*)" pixels$/ do
-|pixels|
+When /^I scroll up the page "(.*)" pixels$/ do |pixels|
   @browser.execute_script("window.scrollBy(0,-#{pixels})")
 end
 
 =begin execute_script_step_2
 When I scroll down the page "pixels" pixels
 =end
-When /^I scroll down the page "(.*)" pixels$/ do
-|pixels|
+When /^I scroll down the page "(.*)" pixels$/ do |pixels|
   @browser.execute_script("window.scrollBy(0,#{pixels})")
 end
 

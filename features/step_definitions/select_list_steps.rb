@@ -1,41 +1,34 @@
-=begin
-      When I select "entry" from the dropdown "attribute=value"
+=begin select_list_test_1
+When I select "entry" from the dropdown "attribute=value"
 =end
-When /^I select "(.*)" from the dropdown "(\w{2,9})=(.*)"$/ do
-|entry, attribute, value|
-  selector = @browser.select_list(:"#{attribute}" => value)
-  selector.wait_until(&:present?)
-  eval = selector.exists?
-  if eval == true
-    selector.select "#{entry}"
+When /^I select "(.*)" from the dropdown "(.*)"$/ do |entry, selector|
+  element = @browser.select_list(css: selector)
+  if element.present?
+    element.select "#{entry}"
   else
-    fail("FAIL!!!! I couldn't select '#{entry}' from the dropdown '#{attribute}=#{value}'")
+    fail("FAIL!!!! I couldn't select '#{entry}' from the dropdown '#{selector}'")
   end
 end
 
 #_step_#2 Then the value of the dropdown "(.*)" should be "(.*)"
-Then /^the value of the dropdown "(\w{2,9})=(.*)" should be "(.*)"$/ do
-|attribute, value, entry|
-  selector = @browser.select_list(:"#{attribute}" => value)
-  selector.wait_until(&:present?)
-  dropdown = selector.value
-  eval = dropdown == "#{entry}"
-  if eval == true
-    puts("#{eval}!!! the '#{attribute}=#{value}' value is '#{dropdown}'")
+Then /^the value of the dropdown "(.*)" should be "(.*)"$/ do |selector, entry|
+  element = @browser.select_list(css: selector)
+  element.present?
+  dropdown = element.value
+  if dropdown == entry
+    log("True !!! the '#{selector}' value is '#{dropdown}'")
   else
-    fail("#{eval}!!! the '#{attribute}=#{value}' value is '#{dropdown}'")
+    fail("Fail !!! the '#{selector}' value is '#{dropdown}'")
   end
 end
 
 #_step_#3 Then the dropdown "(.*)" should have "(.*)" selected
-Then /^the dropdown "(\w{2,9})=(.*)" should have "(.*)" selected$/ do
-|attribute, value, entry|
-  selector = @browser.select_list(:"#{attribute}" => value)
-  selector.wait_until(&:present?)
-  eval = selector.selected? "#{entry}"
-  if eval == true
-    puts("#{eval}!!! the dropdown '#{attribute}=#{value}' has '#{entry}' selected")
+Then /^the dropdown "(.*)" should have "(.*)" selected$/ do |selector, entry|
+  element = @browser.select_list(css: selector)
+  element.present?
+  if element.selected? "#{entry}"
+    log("True !!! the dropdown '#{selector}' has '#{entry}' selected")
   else
-    fail("#{eval}!!! the dropdown '#{attribute}=#{value}' doesn NOT have '#{entry}' selected")
+    fail("Fail !!! the dropdown '#{selector}' doesn NOT have '#{entry}' selected")
   end
 end

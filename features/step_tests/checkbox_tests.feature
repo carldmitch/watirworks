@@ -33,9 +33,3 @@ Feature: Tests for checkbox_steps
     Then the checkbox "#testcheckbox" should not be set
     When I set the checkbox "#testcheckbox"
     Then the checkbox "#testcheckbox" should be set
-
-# if you make any changes to the checkbox_steps.rb you should run the following test
-#
-# => cucumber -t @checkbox
-# => cucumber features/step_tests/checkbox_tests.feature
-#

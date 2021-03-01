@@ -84,11 +84,11 @@ case ENV['SPEED']
 # If you put the outline tag on every 'Scenario Outline'
 # then the two hooks below will put a line change
 Before('@outline') do
-  puts "\n          "
+  log("\n          ")
 end
 #------------------------------------------------------------------------------#
 AfterStep('@outline') do
-  puts "\n          "
+  log("\n          ")
 end
 #------------------------------------------------------------------------------#
 # If the feature being tested breaks you can add this tag

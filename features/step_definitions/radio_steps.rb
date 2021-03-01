@@ -1,41 +1,35 @@
-##_step_#1 When I set the radio button "(\w{2,9})=(.*)"
-#
-When /^I set the radio button "(\w{2,9})=(.*)"$/ do
- |attribute, value|
-  selector = @browser.radio(:"#{attribute}" => value)
-  selector.wait_until(&:present?)
-  eval = selector.exists?
-  if eval == true
-    selector.set
-    else
-      fail("FAIL!!!! I couldn't set the radio button '#{attribute}=#{value}'")
+=begin radio_step_01
+When I set the radio button "(.*)"
+=end
+When /^I set the radio button "(.*)"$/ do |selector|
+  element = @browser.radio(css: selector)
+  if element.present?
+    element.set
+  else
+    fail("FAIL !!!! I couldn't set the radio button '#{selector}'")
   end
 end
 
-##_step_#2 Then the radio button "(\w{2,9})=(.*)" should be set
+##_step_#2 Then the radio button "(.*)" should be set
 #
-Then /^the radio button "(\w{2,9})=(.*)" should be set$/ do
- |attribute, value|
-  selector = @browser.radio(:"#{attribute}" => value)
-  selector.wait_until(&:present?)
-  eval = selector.set?
-  if eval == true
-    puts("#{eval}!!! the radio button '#{attribute}=#{value}' IS set")
+Then /^the radio button "(.*)" should be set$/ do |selector|
+  element = @browser.radio(css: selector)
+  element.present?
+  if element.set?
+    log("True !!! the radio button '#{selector}' IS set")
   else
-    fail("#{eval}!!! the radio button '#{attribute}=#{value}' is NOT set")
+    fail("Fail !!! the radio button '#{selector}' is NOT set")
   end
 end
 
-##_step_#3 Then the radio button "(\w{2,9})=(.*)" should not be set
+##_step_#3 Then the radio button "(.*)" should not be set
 #
-Then /^the radio button "(\w{2,9})=(.*)" should not be set$/ do
- |attribute, value|
-  selector = @browser.radio(:"#{attribute}" => value)
-  selector.wait_until(&:present?)
-  eval = !(selector.set?)
-  if eval == true
-    puts("#{eval}!!! the radio button '#{attribute}=#{value}' is NOT set")
+Then /^the radio button "(.*)" should not be set$/ do |selector|
+  element = @browser.radio(css: selector)
+  element.present?
+  if !(element.set?)
+    log("True !!! the radio button '#{selector}' is NOT set")
   else
-    fail("#{eval}!!! the radio button '#{attribute}=#{value}' IS set")
+    fail("Fail !!! the radio button '#{selector}' IS set")
   end
 end

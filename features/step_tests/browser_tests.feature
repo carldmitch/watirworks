@@ -51,7 +51,7 @@ Feature: Tests for browser_steps
   @browser_step_7
   Scenario: 7 Then the url should be "(.*)"
     Given I am on the "http://the-internet.herokuapp.com/" page
-    When I click on the link text "Drag and Drop"
+    When I click on the link with the text "Drag and Drop"
     Then the url should be "http://the-internet.herokuapp.com/drag_and_drop"
 
   @browser_step_8
@@ -63,10 +63,3 @@ Feature: Tests for browser_steps
   Scenario: 8 Then the url should match the given RegEx "(.*)"
     Given I am on the "https://github.com/rspec/rspec-expectations#built-in-matchers" page
     Then the url should match the given RegEx "^http.*rspec.*"
-
-
-# if you make any changes to the browser_steps.rb you should run the following test
-#
-# => cucumber -t @browser
-# => cucumber features/step_tests/browser_tests.feature
-#

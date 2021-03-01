@@ -1,7 +1,7 @@
 =begin
-When I pause for "5" seconds
+Then I pause for "5" seconds
 =end
-When /^I pause for "(.*)" seconds?$/ do
+Then /^I pause for "(.*)" seconds?$/ do
 | num_secs |
   sleep num_secs.to_i
   if num_secs.to_i == 1
@@ -19,7 +19,6 @@ When /^I take a screen shot$/ do
   time = Time.now.strftime("%Y_%m_%d-%H_%M_%S")
   @browser.screenshot.save "features/screenshots/#{time}.png"
   log("Your screenshot was saved to 'features/screenshots/#{time}.png'")
-  log("open features/screenshots/#{time}.png")
 end
 
 =begin
@@ -30,6 +29,5 @@ When /^I save a screen shot to the "(.*)" directory$/ do
   sleep 1
   time = Time.now.strftime("%Y_%m_%d-%H_%M_%S")
   @browser.screenshot.save "#{local_path}/#{time}.png"
-  puts "Your screenshot was saved to '#{local_path}/#{time}.png'"
-  puts "open #{local_path}/#{time}.png"
+  log("Your screenshot was saved to '#{local_path}/#{time}.png'")
 end

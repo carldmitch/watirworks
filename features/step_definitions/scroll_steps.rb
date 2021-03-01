@@ -22,11 +22,9 @@ end
 =begin
 When I scroll to the "attribute=value" element
 =end
-When /^I scroll to the "(\w{2,9})=(.*)" element$/ do
-|attribute, value|
-  selector = @browser.element(:"#{attribute}" => value)
-  selector.wait_until(&:present?)
-  @browser.scroll.to selector
+When /^I scroll to the "(.*)" element$/ do |selector|
+  element = @browser.element(css: selector)
+  @browser.execute_script("arguments[0].scrollIntoView({block: 'center'});", element)
 end
 
 =begin

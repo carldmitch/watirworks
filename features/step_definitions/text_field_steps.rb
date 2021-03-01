@@ -87,7 +87,7 @@ Then the input field "attribute=value" should be editable
 Then /^the input field "(.*)" should be editable$/ do |selector|
   element = @browser.text_field(css: selector)
   if element.enabled?
-    puts("True !!! '#{selector}' is editable!")
+    log("True !!! '#{selector}' is editable!")
   else
     fail("False !!! '#{selector}' is NOT editable!")
   end
@@ -99,7 +99,7 @@ Then the input field "attribute=value" should not be editable
 Then /^the input field "(.*)" should not be editable$/ do |selector|
   element = @browser.text_field(css: selector)
   if !(element.enabled?)
-    puts("True !!! '#{selector}' is NOT editable!")
+    log("True !!! '#{selector}' is NOT editable!")
   else
     fail("Fail, '#{selector}' is editable!")
   end
